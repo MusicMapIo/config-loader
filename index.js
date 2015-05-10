@@ -33,6 +33,9 @@ function _readFile(conf, file) {
 	try {
 		var c = require(file);
 	} catch(e) {
+		if (e.name === 'SyntaxError') {
+			throw e;
+		}
 		return false;
 	}
 	if (c) {
