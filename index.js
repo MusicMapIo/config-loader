@@ -1,6 +1,6 @@
 var path = require('path');
 
-var Loader = function(opts) {
+var Loader = function(opts, defaults) {
 	// Default some things
 	this.namespace = opts.namespace || 'app';
 	this.mainfile = opts.mainfile || 'main';
@@ -10,11 +10,12 @@ var Loader = function(opts) {
 		'/etc',
 		'/usr/local/etc'
 	];
+	this.defaults = defaults || {};
 };
 
 Loader.prototype.load = function() {
 	// The config accumulator
-	var conf = {};
+	var conf = this.defaults;
 
 	// Load from each config directory
 	this.configDirectories.forEach(function(dir) {
@@ -54,7 +55,7 @@ function _extend(obj, o) {
 	}
 };
 
-module.exports = function(opts) {
-	return (new Loader(opts)).load();
+module.exports = function(opts, defaults) {
+	return (new Loader(opts, defaults)).load();
 };
 module.exports.Loader = Loader;
