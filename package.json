@@ -1,7 +1,7 @@
 {
-  "name": "config-loader",
+  "name": "json-config-loader",
   "version": "1.0.0",
-  "description": "An opinionated config loader",
+  "description": "An opinionated json config loader",
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha"
@@ -11,6 +11,7 @@
     "url": "git@github.com:MusicMapIo/config-loader.git"
   },
   "keywords": [
+	"json",
     "config",
     "loader"
   ],
