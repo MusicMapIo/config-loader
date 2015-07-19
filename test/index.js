@@ -20,4 +20,18 @@ describe('Config Loader', function() {
 		assert.equal(config.blargh, undefined);
 	});
 
+	it('should override values', function() {
+		var config = load({
+			configDirectories: [
+				fixture('full', 'etc'),
+				fixture('full', 'usr', 'local', 'etc')
+			]
+		}, {}, {
+			foo: 'baz'
+		});
+
+		assert.equal(config.foo, 'baz');
+		assert.equal(config.bar, 'dev override');
+		assert.equal(config.boop, 'bop');
+	});
 });

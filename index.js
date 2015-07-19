@@ -1,6 +1,6 @@
 var path = require('path');
 
-var Loader = function(opts, defaults) {
+var Loader = function(opts, defaults, overrides) {
 	// Default some things
 	this.namespace = opts.namespace || 'app';
 	this.mainfile = opts.mainfile || 'main';
@@ -11,6 +11,7 @@ var Loader = function(opts, defaults) {
 		'/usr/local/etc'
 	];
 	this.defaults = defaults || {};
+	this.overrides = overrides || {};
 };
 
 Loader.prototype.load = function() {
@@ -25,6 +26,9 @@ Loader.prototype.load = function() {
 		// Load the env file
 		_readFile(conf, path.join(dir, this.namespace, this.env + this.extention));
 	}.bind(this));
+
+	// Override variables
+	_extend(conf, this.overrides);
 
 	// Returns a simple config objct
 	return conf;
@@ -55,7 +59,7 @@ function _extend(obj, o) {
 	}
 };
 
-module.exports = function(opts, defaults) {
-	return (new Loader(opts, defaults)).load();
+module.exports = function(opts, defaults, overrides) {
+	return (new Loader(opts, defaults, overrides)).load();
 };
 module.exports.Loader = Loader;

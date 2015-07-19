@@ -45,6 +45,9 @@ var config = loadConfig({
 }, {
 	// Default config options
 	defaults: 'foobar'
+}, {
+	// Override config values
+	overrides: 'foobaz'
 });
 
 /*

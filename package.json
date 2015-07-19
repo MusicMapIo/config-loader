@@ -1,6 +1,6 @@
 {
   "name": "json-config-loader",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "An opinionated json config loader",
   "main": "index.js",
   "scripts": {
